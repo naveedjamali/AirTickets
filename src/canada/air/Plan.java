@@ -36,7 +36,7 @@ public class Plan extends javax.swing.JFrame {
 
         if (button.getText().equals("X")) {
             // Seat is already taken
-            removeSeat(button);
+            removePassenger(button);
 
         } else {
             // Seat is vacant
@@ -45,7 +45,7 @@ public class Plan extends javax.swing.JFrame {
         }
     }
 
-    void removeSeat(JButton button) {
+    void removePassenger(JButton button) {
         int result = JOptionPane.showConfirmDialog(this, "Do you want to remove the Passenger?", "Air Canada",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
