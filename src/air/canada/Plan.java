@@ -35,46 +35,48 @@ public class Plan extends javax.swing.JFrame {
         // get the reference of the button which invoked this method call.
         JButton button = (JButton) event.getSource();
 
-        if(button.getText().equals("X")){
+        if (button.getText().equals("X")) {
             // Seat is already taken
-            int result = JOptionPane.showConfirmDialog(this,"Do you want to remove the Passenger?", "Air Canada",
+            int result = JOptionPane.showConfirmDialog(this, "Do you want to remove the Passenger?", "Air Canada",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
-            if(result == JOptionPane.YES_OPTION){
-                String seatName = button.getName();
-                button.setText(seatName);
-                button.setName(seatName); // Name of the button is a different parameter than the Text (which appears on the button)
-                button.addActionListener(this::aToHButtonsAction);
 
-                JButton tempButton = new JButton(); //to get the default background color of a JButton.
-
-                button.setBackground(tempButton.getBackground()); // assign the default background co
+            if (result == JOptionPane.YES_OPTION) {
+                removeSeat(button);
             }
 
 
-        }else{
+        } else {
             // Seat is vacant
 
-        //Brings up message
-        String firstName = JOptionPane.showInputDialog(null, "Please enter your first name.");
-        //input
-        System.out.println(firstName);
-        //Brings up message
-        String lastName = JOptionPane.showInputDialog(null, "Please enter your last name.");
-        //input
-        System.out.println(lastName);
-        //output ___ has been assigned
-        JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat " + button.getText() + "!");
+            //Brings up message
+            String firstName = JOptionPane.showInputDialog(null, "Please enter your first name.");
+            //input
+            System.out.println(firstName);
+            //Brings up message
+            String lastName = JOptionPane.showInputDialog(null, "Please enter your last name.");
+            //input
+            System.out.println(lastName);
+            //output ___ has been assigned
+            JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat " + button.getText() + "!");
 
-        //change colour of button
-        button.setBackground(Color.red);
-        //keep text black
-        button.setForeground(Color.black);
-        //change text to X
-        button.setText("X");
+            //change colour of button
+            button.setBackground(Color.red);
+            //keep text black
+            button.setForeground(Color.black);
+            //change text to X
+            button.setText("X");
         }
     }
 
+    void removeSeat(JButton button) {
+        String seatName = button.getName();
+        button.setText(seatName);
+        button.setName(seatName); // Name of the button is a different parameter than the Text (which appears on the button)
+        button.addActionListener(this::aToHButtonsAction);
+        JButton tempButton = new JButton(); //to get the default background color of a JButton.
+        button.setBackground(tempButton.getBackground()); // assign the default background co
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -87,7 +89,7 @@ public class Plan extends javax.swing.JFrame {
             for (int j = 0; j < 10; j++) {
                 String seatName = seatLabels[i] + (j + 1);
 
-                JButton button =  new JButton();
+                JButton button = new JButton();
                 button.setText(seatName);
                 button.setName(seatName);
                 button.setFont(new java.awt.Font("Arial", 0, 18));
