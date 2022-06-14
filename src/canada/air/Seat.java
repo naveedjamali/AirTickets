@@ -4,13 +4,14 @@
  */
 package canada.air;
 
-import air.canada.Chart;
+import air.canada.Plan;
 
 /**
  *
  * @author sprince
  */
-class Seat {
+public class Seat {
+
     private int rowNum;
     private String aisle;
     private String seat;
@@ -18,59 +19,63 @@ class Seat {
     private String lastName;
     private boolean occupied;
 
-    public Seat() {
+    Seat() {
+
         rowNum = 0;
         aisle = "";
         seat = "";
         firstName = "";
         lastName = "";
         occupied = false;
+
     }
 
-    public Seat(int rowNum, String aisle) {
+    public Seat(int rowNum, String aisle){
+
         this.rowNum = rowNum;
         this.aisle = aisle;
         seat = "";
         firstName = "";
         lastName = "";
         occupied = false;
+
     }
 
-    public void addPassenger(String first, String last) {
+    public void addPassenger(String first, String last){
+
         firstName = first;
         lastName = last;
         occupied = true;
+
     }
 
-    public String getAisle() {
-        return aisle;
-    }
+    public String getAisle(){
+        return aisle;}
 
     public String getName() {
+
         if(occupied) {
             return "this seat is booked by "+firstName + " " + lastName;
-        }
-        else {
-            return "Empty Seat";
-        }
+        } else {
+            return "Empty Seat"; }
+
     }
 
-    public int getRowNum() {
-        return rowNum;
-    }
+    public int getRowNum(){
+        return rowNum;}
 
-    public String getSeat() {
-        return seat;
-    }
+    public String getSeat(){
+        return seat;}
 
-    public boolean hasPassenger() {
-        return occupied;
-    }
+    public boolean hasPassenger(){
+        return occupied;}
 
-    public void removePassenger() {
+    public void removePassenger(){
+
         firstName = "";
         lastName = "";
         occupied = false;
+
     }
 
     public static void main(String args[]) {
@@ -88,20 +93,20 @@ class Seat {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chart().setVisible(true);
+                new Plan().setVisible(true);
             }
         });
     }

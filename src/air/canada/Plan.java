@@ -5,7 +5,7 @@
 package air.canada;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
 import java.awt.Color;
@@ -15,13 +15,13 @@ import java.io.IOException;
 /**
  * @author sprince
  */
-public class Chart extends javax.swing.JFrame {
+public class Plan extends javax.swing.JFrame {
     File nameSave = new File("nameList.txt");
 
     /**
      * Creates new form Chart
      */
-    public Chart() {
+    public Plan() {
         initComponents();
     }
 
@@ -35,6 +35,26 @@ public class Chart extends javax.swing.JFrame {
         // get the reference of the button which invoked this method call.
         JButton button = (JButton) event.getSource();
 
+        if(button.getText().equals("X")){
+            // Seat is already taken
+            int result = JOptionPane.showConfirmDialog(this,"Do you want to remove the Passenger?", "Air Canada",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                String seatName = button.getName();
+                button.setText(seatName);
+                button.setName(seatName); // Name of the button is a different parameter than the Text (which appears on the button)
+                button.addActionListener(this::aToHButtonsAction);
+
+                JButton tempButton = new JButton(); //to get the default background color of a JButton.
+
+                button.setBackground(tempButton.getBackground()); // assign the default background co
+            }
+
+
+        }else{
+            // Seat is vacant
+
         //Brings up message
         String firstName = JOptionPane.showInputDialog(null, "Please enter your first name.");
         //input
@@ -44,7 +64,7 @@ public class Chart extends javax.swing.JFrame {
         //input
         System.out.println(lastName);
         //output ___ has been assigned
-        JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat "+button.getText()+"!");
+        JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat " + button.getText() + "!");
 
         //change colour of button
         button.setBackground(Color.red);
@@ -52,7 +72,9 @@ public class Chart extends javax.swing.JFrame {
         button.setForeground(Color.black);
         //change text to X
         button.setText("X");
+        }
     }
+
 
 
     @SuppressWarnings("unchecked")
@@ -63,15 +85,21 @@ public class Chart extends javax.swing.JFrame {
         String[] seatLabels = {"A", "B", "C", "D", "E", "F", "G", "H"};
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 10; j++) {
-                seat[i][j] = new JButton(seatLabels[i]+(j+1));
-                seat[i][j].setFont(new java.awt.Font("Arial", 0, 18));
-                seat[i][j].addActionListener(actionEvent -> aToHButtonsAction(actionEvent));
+                String seatName = seatLabels[i] + (j + 1);
+
+                JButton button =  new JButton();
+                button.setText(seatName);
+                button.setName(seatName);
+                button.setFont(new java.awt.Font("Arial", 0, 18));
+                button.addActionListener(this::aToHButtonsAction);
+
+                seat[i][j] = button;
             }
         }
 
         aisles = new JLabel[12];
-        for(int i=0;i<aisles.length;i++){
-            JLabel aisle = new JLabel(""+(i+1));
+        for (int i = 0; i < aisles.length; i++) {
+            JLabel aisle = new JLabel("" + (i + 1));
             aisle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             aisle.setForeground(new java.awt.Color(255, 0, 0));
             aisles[i] = aisle;
@@ -150,7 +178,6 @@ public class Chart extends javax.swing.JFrame {
         chartLbl.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         chartLbl.setForeground(new java.awt.Color(255, 51, 51));
         chartLbl.setText("Air Canada");
-
 
 
         manifest.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -554,20 +581,20 @@ public class Chart extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Plan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chart().setVisible(true);
+                new Plan().setVisible(true);
             }
         });
     }

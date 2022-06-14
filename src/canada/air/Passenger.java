@@ -4,8 +4,6 @@
  */
 package canada.air;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author sprince
@@ -36,8 +34,8 @@ public class Passenger {
 
     // Parameterised constructor
     // Used to initialize first and last name
-    Passenger(String first, String last)
-    {
+    Passenger(String first, String last){
+
         this.firstName = first;
         this.lastName = last;
         this.name = first + last;
@@ -45,90 +43,65 @@ public class Passenger {
 
     // Parameterized constructor
     // Used to initialize first and last name and row and aisle
-    Passenger(String first, String last, int row, String aisle)
-    {
+    Passenger(String first, String last, int row, String aisle){
+
         this.firstName = first;
         this.lastName = last;
         this.rowNum = row;
         this.aisle = aisle;
         this.name = first + last;
+
     }
 
     // Compare 2 objects
-    int compareTo(Passenger p)
-    {
+    int compareTo(Passenger p){
+
         if (this == p)
             return 1;
         return 0;
+
     }
 
     // Getters
-    String getAisle()
-    {
-        return this.aisle;
-    }
+    String getAisle(){
+        return this.aisle;}
 
-    String getFirstname()
-    {
-        return this.firstName;
-    }
+    String getFirstname(){
+        return this.firstName;}
 
-    String getLastName()
-    {
-        return this.lastName;
-    }
+    String getLastName(){
+        return this.lastName;}
 
-    String getName()
-    {
-        return name;
-    }
+    String getName(){
+        return name;}
 
-    int getRowNum()
-    {
-        return this.rowNum;
-    }
+    int getRowNum(){
+        return this.rowNum;}
 
-    String getSeatNum()
-    {
-        return this.seatNum;
-    }
+    String getSeatNum(){
+        return this.seatNum;}
 
     // Setters
-    void setAisle(String letter)
-    {
-        this.aisle = letter;
-    }
+    void setAisle(String letter){
+        this.aisle = letter;}
 
-    void setFirstName(String first)
-    {
-        this.firstName = first;
-    }
+    void setFirstName(String first){
+        this.firstName = first;}
 
-    void setLastName(String last)
-    {
-        this.lastName = last;
-    }
+    void setLastName(String last){
+        this.lastName = last;}
 
-    void setName(String first, String last)
-    {
-        this.name = this.firstName + this.lastName;
-    }
+    void setName(String first, String last){
+        this.name = this.firstName + this.lastName;}
 
-    void setRowNum(int num)
-    {
-        this.rowNum = num;
-    }
+    void setRowNum(int num){
+        this.rowNum = num;}
 
-    void setSeatNum(String seatNum)
-    {
-        this.seatNum = seatNum;
-    }
+    void setSeatNum(String seatNum){
+        this.seatNum = seatNum;}
 
     // return in String
-    public String toString()
-    {
-        return "Name : " + this.getName() + " Aisle : " + this.getAisle() + " Row No. : " + this.getRowNum() + " Seat No. : " + this.getSeatNum();
-
-    }
+    public String toString() {
+        return "Name : " + this.getName() + " Aisle : " + this.getAisle() + " Row No. : " + this.getRowNum() + " Seat No. : " + this.getSeatNum();}
 
 }
