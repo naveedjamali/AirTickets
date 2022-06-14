@@ -4,8 +4,6 @@
  */
 package canada.air;
 
-import air.canada.Plan;
-
 /**
  *
  * @author sprince
