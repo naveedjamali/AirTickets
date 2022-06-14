@@ -4,10 +4,10 @@
  */
 package canada.air;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.*;
-import java.awt.Color;
 import java.io.IOException;
 
 
@@ -15,11 +15,11 @@ import java.io.IOException;
  * @author sprince
  */
 public class Plan extends javax.swing.JFrame {
+
+
     File nameSave = new File("nameList.txt");
 
-    /**
-     * Creates new form Chart
-     */
+
     public Plan() {
         initComponents();
     }
@@ -36,65 +36,71 @@ public class Plan extends javax.swing.JFrame {
 
         if (button.getText().equals("X")) {
             // Seat is already taken
-            int result = JOptionPane.showConfirmDialog(this, "Do you want to remove the Passenger?", "Air Canada",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
-
-            if (result == JOptionPane.YES_OPTION) {
-                removeSeat(button);
-            }
-
+            removeSeat(button);
 
         } else {
             // Seat is vacant
+            assignSeatToPassenger(button);
 
-            //Brings up message
-            String firstName = JOptionPane.showInputDialog(null, "Please enter your first name.");
-            //input
-            System.out.println(firstName);
-            //Brings up message
-            String lastName = JOptionPane.showInputDialog(null, "Please enter your last name.");
-            //input
-            System.out.println(lastName);
-            //output ___ has been assigned
-            JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat " + button.getText() + "!");
-
-            //change colour of button
-            button.setBackground(Color.red);
-            //keep text black
-            button.setForeground(Color.black);
-            //change text to X
-            button.setText("X");
         }
     }
 
     void removeSeat(JButton button) {
-        String seatName = button.getName();
-        button.setText(seatName);
-        button.setName(seatName); // Name of the button is a different parameter than the Text (which appears on the button)
-        button.addActionListener(this::aToHButtonsAction);
-        JButton tempButton = new JButton(); //to get the default background color of a JButton.
-        button.setBackground(tempButton.getBackground()); // assign the default background co
+        int result = JOptionPane.showConfirmDialog(this, "Do you want to remove the Passenger?", "Air Canada",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (result == JOptionPane.YES_OPTION) {
+            String seatName = button.getName();
+            button.setText(seatName);
+            button.setName(seatName); // Name of the button is a different parameter than the Text (which appears on the button)
+            button.addActionListener(this::aToHButtonsAction);
+            JButton tempButton = new JButton(); //to get the default background color of a JButton.
+            button.setBackground(tempButton.getBackground()); // assign the default background co
+        }
     }
 
+    void assignSeatToPassenger(JButton button) {
+        //Brings up message
+        String firstName = JOptionPane.showInputDialog(null, "Please enter your first name.");
+        //input
+        System.out.println(firstName);
+        //Brings up message
+        String lastName = JOptionPane.showInputDialog(null, "Please enter your last name.");
+        //input
+        System.out.println(lastName);
+        //output ___ has been assigned
+        JOptionPane.showMessageDialog(rootPane, firstName + " " + lastName + " has been assigned to seat " + button.getText() + "!");
+
+
+        //change colour of button
+        button.setBackground(Color.red);
+        //keep text black
+        button.setForeground(Color.black);
+        //change text to X
+        button.setText("X");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        seat = new JButton[8][10];
+        int numOfColumns = 8;
+        int numOfRows = 10;
+        seatButtons = new JButton[numOfColumns][numOfRows];
         String[] seatLabels = {"A", "B", "C", "D", "E", "F", "G", "H"};
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 10; j++) {
                 String seatName = seatLabels[i] + (j + 1);
-
                 JButton button = new JButton();
+
                 button.setText(seatName);
                 button.setName(seatName);
                 button.setFont(new java.awt.Font("Arial", 0, 18));
                 button.addActionListener(this::aToHButtonsAction);
 
-                seat[i][j] = button;
+                seatButtons[i][j] = button;
             }
         }
 
@@ -235,119 +241,119 @@ public class Plan extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][0])
+                                                                .addComponent(seatButtons[0][0])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][0]))
+                                                                .addComponent(seatButtons[1][0]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][1])
+                                                                .addComponent(seatButtons[0][1])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][1]))
+                                                                .addComponent(seatButtons[1][1]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][2])
+                                                                .addComponent(seatButtons[0][2])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][2]))
+                                                                .addComponent(seatButtons[1][2]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][3])
+                                                                .addComponent(seatButtons[0][3])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][3]))
+                                                                .addComponent(seatButtons[1][3]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][4])
+                                                                .addComponent(seatButtons[0][4])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][4]))
+                                                                .addComponent(seatButtons[1][4]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][5])
+                                                                .addComponent(seatButtons[0][5])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][5]))
+                                                                .addComponent(seatButtons[1][5]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][6])
+                                                                .addComponent(seatButtons[0][6])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][6]))
+                                                                .addComponent(seatButtons[1][6]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][7])
+                                                                .addComponent(seatButtons[0][7])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][7]))
+                                                                .addComponent(seatButtons[1][7]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][8])
+                                                                .addComponent(seatButtons[0][8])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][8]))
+                                                                .addComponent(seatButtons[1][8]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[0][9])
+                                                                .addComponent(seatButtons[0][9])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(seat[1][9])))
+                                                                .addComponent(seatButtons[1][9])))
                                                 .addGap(60, 60, 60)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][7])
+                                                                .addComponent(seatButtons[2][7])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][7])
+                                                                .addComponent(seatButtons[3][7])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][7]))
+                                                                .addComponent(seatButtons[4][7]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][6])
+                                                                .addComponent(seatButtons[2][6])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][6])
+                                                                .addComponent(seatButtons[3][6])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][6]))
+                                                                .addComponent(seatButtons[4][6]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][5])
+                                                                .addComponent(seatButtons[2][5])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][5])
+                                                                .addComponent(seatButtons[3][5])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][5]))
+                                                                .addComponent(seatButtons[4][5]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][4])
+                                                                .addComponent(seatButtons[2][4])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][4])
+                                                                .addComponent(seatButtons[3][4])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][4]))
+                                                                .addComponent(seatButtons[4][4]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][3])
+                                                                .addComponent(seatButtons[2][3])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][3])
+                                                                .addComponent(seatButtons[3][3])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][3]))
+                                                                .addComponent(seatButtons[4][3]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][2])
+                                                                .addComponent(seatButtons[2][2])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][2])
+                                                                .addComponent(seatButtons[3][2])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][2]))
+                                                                .addComponent(seatButtons[4][2]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][1])
+                                                                .addComponent(seatButtons[2][1])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][1])
+                                                                .addComponent(seatButtons[3][1])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][1], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addComponent(seatButtons[4][1], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][0])
+                                                                .addComponent(seatButtons[2][0])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][0])
+                                                                .addComponent(seatButtons[3][0])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][0]))
+                                                                .addComponent(seatButtons[4][0]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][8])
+                                                                .addComponent(seatButtons[2][8])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][8])
+                                                                .addComponent(seatButtons[3][8])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][8]))
+                                                                .addComponent(seatButtons[4][8]))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(seat[2][9])
+                                                                .addComponent(seatButtons[2][9])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[3][9])
+                                                                .addComponent(seatButtons[3][9])
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(seat[4][9])))
+                                                                .addComponent(seatButtons[4][9])))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(seat[5][0])
-                                                        .addComponent(seat[5][1])
-                                                        .addComponent(seat[5][2])
-                                                        .addComponent(seat[5][3])
-                                                        .addComponent(seat[5][4])
-                                                        .addComponent(seat[5][5])
-                                                        .addComponent(seat[5][6])
-                                                        .addComponent(seat[5][7])
-                                                        .addComponent(seat[5][8])
-                                                        .addComponent(seat[5][9])))
+                                                        .addComponent(seatButtons[5][0])
+                                                        .addComponent(seatButtons[5][1])
+                                                        .addComponent(seatButtons[5][2])
+                                                        .addComponent(seatButtons[5][3])
+                                                        .addComponent(seatButtons[5][4])
+                                                        .addComponent(seatButtons[5][5])
+                                                        .addComponent(seatButtons[5][6])
+                                                        .addComponent(seatButtons[5][7])
+                                                        .addComponent(seatButtons[5][8])
+                                                        .addComponent(seatButtons[5][9])))
                                         .addComponent(manifest)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(128, 128, 128)
@@ -358,45 +364,45 @@ public class Plan extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][9])
+                                                .addComponent(seatButtons[6][9])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][9]))
+                                                .addComponent(seatButtons[7][9]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][8])
+                                                .addComponent(seatButtons[6][8])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][8]))
+                                                .addComponent(seatButtons[7][8]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][7])
+                                                .addComponent(seatButtons[6][7])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][7]))
+                                                .addComponent(seatButtons[7][7]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][6])
+                                                .addComponent(seatButtons[6][6])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][6]))
+                                                .addComponent(seatButtons[7][6]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][5])
+                                                .addComponent(seatButtons[6][5])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][5]))
+                                                .addComponent(seatButtons[7][5]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][4])
+                                                .addComponent(seatButtons[6][4])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][4]))
+                                                .addComponent(seatButtons[7][4]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][3])
+                                                .addComponent(seatButtons[6][3])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][3]))
+                                                .addComponent(seatButtons[7][3]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][2])
+                                                .addComponent(seatButtons[6][2])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][2]))
+                                                .addComponent(seatButtons[7][2]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][0])
+                                                .addComponent(seatButtons[6][0])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][0]))
+                                                .addComponent(seatButtons[7][0]))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(seat[6][1])
+                                                .addComponent(seatButtons[6][1])
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(seat[7][1])))
+                                                .addComponent(seatButtons[7][1])))
                                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -408,114 +414,114 @@ public class Plan extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(seat[0][0])
+                                                        .addComponent(seatButtons[0][0])
                                                         .addComponent(aisles[0])
-                                                        .addComponent(seat[1][0])
-                                                        .addComponent(seat[2][0])
-                                                        .addComponent(seat[3][0])
-                                                        .addComponent(seat[4][0])
-                                                        .addComponent(seat[5][0])
-                                                        .addComponent(seat[6][0])
-                                                        .addComponent(seat[7][0]))
+                                                        .addComponent(seatButtons[1][0])
+                                                        .addComponent(seatButtons[2][0])
+                                                        .addComponent(seatButtons[3][0])
+                                                        .addComponent(seatButtons[4][0])
+                                                        .addComponent(seatButtons[5][0])
+                                                        .addComponent(seatButtons[6][0])
+                                                        .addComponent(seatButtons[7][0]))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(seat[0][1])
+                                                        .addComponent(seatButtons[0][1])
                                                         .addComponent(aisles[1])
-                                                        .addComponent(seat[1][1])
-                                                        .addComponent(seat[2][1])
-                                                        .addComponent(seat[3][1])
-                                                        .addComponent(seat[4][1])
-                                                        .addComponent(seat[5][1])
-                                                        .addComponent(seat[6][1])
-                                                        .addComponent(seat[7][1]))
+                                                        .addComponent(seatButtons[1][1])
+                                                        .addComponent(seatButtons[2][1])
+                                                        .addComponent(seatButtons[3][1])
+                                                        .addComponent(seatButtons[4][1])
+                                                        .addComponent(seatButtons[5][1])
+                                                        .addComponent(seatButtons[6][1])
+                                                        .addComponent(seatButtons[7][1]))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(seat[0][2])
+                                                        .addComponent(seatButtons[0][2])
                                                         .addComponent(aisles[2])
-                                                        .addComponent(seat[1][2])
-                                                        .addComponent(seat[2][2])
-                                                        .addComponent(seat[3][2])
-                                                        .addComponent(seat[4][2])
-                                                        .addComponent(seat[5][2])
-                                                        .addComponent(seat[6][2])
-                                                        .addComponent(seat[7][2]))
+                                                        .addComponent(seatButtons[1][2])
+                                                        .addComponent(seatButtons[2][2])
+                                                        .addComponent(seatButtons[3][2])
+                                                        .addComponent(seatButtons[4][2])
+                                                        .addComponent(seatButtons[5][2])
+                                                        .addComponent(seatButtons[6][2])
+                                                        .addComponent(seatButtons[7][2]))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(seat[0][3])
+                                                        .addComponent(seatButtons[0][3])
                                                         .addComponent(aisles[3])
-                                                        .addComponent(seat[1][3])
-                                                        .addComponent(seat[2][3])
-                                                        .addComponent(seat[3][3])
-                                                        .addComponent(seat[4][3])
-                                                        .addComponent(seat[5][3])
-                                                        .addComponent(seat[6][3])
-                                                        .addComponent(seat[7][3]))
+                                                        .addComponent(seatButtons[1][3])
+                                                        .addComponent(seatButtons[2][3])
+                                                        .addComponent(seatButtons[3][3])
+                                                        .addComponent(seatButtons[4][3])
+                                                        .addComponent(seatButtons[5][3])
+                                                        .addComponent(seatButtons[6][3])
+                                                        .addComponent(seatButtons[7][3]))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(seat[0][4])
-                                                        .addComponent(seat[1][4])
-                                                        .addComponent(seat[2][4])
-                                                        .addComponent(seat[3][4])
-                                                        .addComponent(seat[4][4])
-                                                        .addComponent(seat[5][4])
-                                                        .addComponent(seat[6][4])
-                                                        .addComponent(seat[7][4])))
+                                                        .addComponent(seatButtons[0][4])
+                                                        .addComponent(seatButtons[1][4])
+                                                        .addComponent(seatButtons[2][4])
+                                                        .addComponent(seatButtons[3][4])
+                                                        .addComponent(seatButtons[4][4])
+                                                        .addComponent(seatButtons[5][4])
+                                                        .addComponent(seatButtons[6][4])
+                                                        .addComponent(seatButtons[7][4])))
                                         .addComponent(aisles[4]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(seat[0][5])
+                                        .addComponent(seatButtons[0][5])
                                         .addComponent(aisles[5])
-                                        .addComponent(seat[1][5])
-                                        .addComponent(seat[2][5])
-                                        .addComponent(seat[3][5])
-                                        .addComponent(seat[4][5])
-                                        .addComponent(seat[5][5])
-                                        .addComponent(seat[6][5])
-                                        .addComponent(seat[7][5]))
+                                        .addComponent(seatButtons[1][5])
+                                        .addComponent(seatButtons[2][5])
+                                        .addComponent(seatButtons[3][5])
+                                        .addComponent(seatButtons[4][5])
+                                        .addComponent(seatButtons[5][5])
+                                        .addComponent(seatButtons[6][5])
+                                        .addComponent(seatButtons[7][5]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(seat[0][6])
+                                        .addComponent(seatButtons[0][6])
                                         .addComponent(aisles[6])
-                                        .addComponent(seat[1][6])
-                                        .addComponent(seat[2][6])
-                                        .addComponent(seat[3][6])
-                                        .addComponent(seat[4][6])
-                                        .addComponent(seat[5][6])
-                                        .addComponent(seat[6][6])
-                                        .addComponent(seat[7][6]))
+                                        .addComponent(seatButtons[1][6])
+                                        .addComponent(seatButtons[2][6])
+                                        .addComponent(seatButtons[3][6])
+                                        .addComponent(seatButtons[4][6])
+                                        .addComponent(seatButtons[5][6])
+                                        .addComponent(seatButtons[6][6])
+                                        .addComponent(seatButtons[7][6]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(seat[0][7])
+                                        .addComponent(seatButtons[0][7])
                                         .addComponent(aisles[7])
-                                        .addComponent(seat[1][7])
-                                        .addComponent(seat[2][7])
-                                        .addComponent(seat[3][7])
-                                        .addComponent(seat[4][7])
-                                        .addComponent(seat[5][7])
-                                        .addComponent(seat[6][7])
-                                        .addComponent(seat[7][7]))
+                                        .addComponent(seatButtons[1][7])
+                                        .addComponent(seatButtons[2][7])
+                                        .addComponent(seatButtons[3][7])
+                                        .addComponent(seatButtons[4][7])
+                                        .addComponent(seatButtons[5][7])
+                                        .addComponent(seatButtons[6][7])
+                                        .addComponent(seatButtons[7][7]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(seat[0][8])
+                                        .addComponent(seatButtons[0][8])
                                         .addComponent(aisles[8])
-                                        .addComponent(seat[1][8])
-                                        .addComponent(seat[2][8])
-                                        .addComponent(seat[3][8])
-                                        .addComponent(seat[4][8])
-                                        .addComponent(seat[5][8])
-                                        .addComponent(seat[6][8])
-                                        .addComponent(seat[7][8]))
+                                        .addComponent(seatButtons[1][8])
+                                        .addComponent(seatButtons[2][8])
+                                        .addComponent(seatButtons[3][8])
+                                        .addComponent(seatButtons[4][8])
+                                        .addComponent(seatButtons[5][8])
+                                        .addComponent(seatButtons[6][8])
+                                        .addComponent(seatButtons[7][8]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(seat[0][9])
+                                        .addComponent(seatButtons[0][9])
                                         .addComponent(aisles[9])
-                                        .addComponent(seat[1][9])
-                                        .addComponent(seat[2][9])
-                                        .addComponent(seat[3][9])
-                                        .addComponent(seat[4][9])
-                                        .addComponent(seat[5][9])
-                                        .addComponent(seat[6][9])
-                                        .addComponent(seat[7][9]))
+                                        .addComponent(seatButtons[1][9])
+                                        .addComponent(seatButtons[2][9])
+                                        .addComponent(seatButtons[3][9])
+                                        .addComponent(seatButtons[4][9])
+                                        .addComponent(seatButtons[5][9])
+                                        .addComponent(seatButtons[6][9])
+                                        .addComponent(seatButtons[7][9]))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(manifest)
@@ -601,7 +607,7 @@ public class Plan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton[][] seat;
+    private javax.swing.JButton[][] seatButtons;
     private javax.swing.JLabel aisles[];
 
     private javax.swing.JLabel chartLbl;

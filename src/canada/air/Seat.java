@@ -5,7 +5,6 @@
 package canada.air;
 
 /**
- *
  * @author sprince
  */
 public class Seat {
@@ -28,7 +27,7 @@ public class Seat {
 
     }
 
-    public Seat(int rowNum, String aisle){
+    public Seat(int rowNum, String aisle) {
 
         this.rowNum = rowNum;
         this.aisle = aisle;
@@ -39,7 +38,7 @@ public class Seat {
 
     }
 
-    public void addPassenger(String first, String last){
+    public void addPassenger(String first, String last) {
 
         firstName = first;
         lastName = last;
@@ -47,28 +46,33 @@ public class Seat {
 
     }
 
-    public String getAisle(){
-        return aisle;}
+    public String getAisle() {
+        return aisle;
+    }
 
     public String getName() {
 
-        if(occupied) {
-            return "this seat is booked by "+firstName + " " + lastName;
+        if (occupied) {
+            return "this seat is booked by " + firstName + " " + lastName;
         } else {
-            return "Empty Seat"; }
+            return "Empty Seat";
+        }
 
     }
 
-    public int getRowNum(){
-        return rowNum;}
+    public int getRowNum() {
+        return rowNum;
+    }
 
-    public String getSeat(){
-        return seat;}
+    public String getSeat() {
+        return seat;
+    }
 
-    public boolean hasPassenger(){
-        return occupied;}
+    public boolean hasPassenger() {
+        return occupied;
+    }
 
-    public void removePassenger(){
+    public void removePassenger() {
 
         firstName = "";
         lastName = "";
